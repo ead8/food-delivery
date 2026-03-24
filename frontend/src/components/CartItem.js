@@ -3,7 +3,6 @@ import { useDispatch} from "react-redux";
 import { removeItem } from "../redux/slices/cartSlice";
 import toast from 'react-hot-toast'
 
-
 const CartItem = (props) => {
     const item = props.item
     const dispatch  = useDispatch();
@@ -16,31 +15,36 @@ const CartItem = (props) => {
           
             // Styling
             style: {
-                backgroundColor:'#FFE76B',
-                color:"red",
-                fontWeight:600
+                backgroundColor:'#1a1a1a',
+                color:"#ff4d4f",
+                fontWeight:600,
+                border: '1px solid #333'
             }
           });
       }
     return(
         <>
-         <div className="flex flex-col lg:flex-row justify-between items-center p-3 rounded-lg shadow-[0_.5rem_1rem_5px_rgba(0,0,0,.15)] border-0 bg-white">
-            <div className="flex gap-2 w-full lg:w-3/4">
-                <img className="" src={item?.image} alt={item?.image} width="100px"/>
+         <div className="flex flex-col lg:flex-row justify-between items-center p-4 rounded-xl shadow-lg border border-dark-border bg-dark-card hover:border-neon-blue/30 transition-colors duration-300">
+            <div className="flex gap-4 w-full lg:w-3/4 items-center">
+                <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border border-dark-border">
+                    <img className="w-full h-full object-cover" src={item?.image} alt={item?.name} />
+                </div>
                 <div className="flex flex-col justify-between">
-                    <h2 className="text-md font-bold hover:text-lime-600">{item?.name}</h2>
-                    <p className="text-sm capitalize text-slate-500">{item?.description}</p>
+                    <h2 className="text-lg font-bold text-white hover:text-neon-blue transition-colors cursor-pointer">{item?.name}</h2>
+                    <p className="text-sm text-gray-400 mt-1 line-clamp-2">{item?.description}</p>
                 </div>
             </div>
-            <div className="flex pt-3 lg:pt-0 justify-between lg:justify-around w-full">
-                <span className="font-bold">₹{item?.price}</span>
-                <span className="font-bold">{item?.quantity}</span>
-                <span className="font-bold">₹{item?.price * item?.quantity}</span>
-                <span onClick={() => handleRemoveItem(item)} className="flex items-center font-bold text-red-500 hover:text-red-800 hover:cursor-pointer">Remove <CloseIcon /></span>
+            <div className="flex pt-4 lg:pt-0 justify-between lg:justify-end lg:gap-8 w-full items-center">
+                <span className="font-bold text-gray-300">₹{item?.price}</span>
+                <span className="font-bold text-white bg-dark-bg px-3 py-1 rounded-md border border-dark-border">{item?.quantity}</span>
+                <span className="font-bold text-neon-green">₹{item?.price * item?.quantity}</span>
+                <button onClick={() => handleRemoveItem(item)} className="p-2 text-gray-500 hover:text-[#ff4d4f] hover:bg-[#ff4d4f]/10 rounded-lg transition-colors flex items-center justify-center" aria-label="Remove item">
+                    <CloseIcon />
+                </button>
             </div>
         </div>
         </>
     )
 } 
 
-export default CartItem
+export default CartItem;

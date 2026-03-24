@@ -1,64 +1,66 @@
 import { useSelector } from "react-redux";
 import logo from "../logo.png";
 import "./css/Header.css";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+
 const Header = () => {
-  function navbarToggle(){
+  function navbarToggle() {
     const element = document.getElementById("toggleNavbar");
     element.classList.toggle("hidden");
   }
 
   // subscribing to the cart using a selector
-  const cartItems = useSelector((store)=> store.cart.items);
+  const cartItems = useSelector((store) => store.cart.items);
+  
   return (
     <>
-      <div className="bg-white sticky top-0 z-50">
-        <header className="relative bg-white ">
-          <p className="flex h-10 items-center justify-center bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-            Get free delivery on orders over ₹1000
+      <div className="sticky top-0 z-50">
+        <header className="relative bg-dark-bg/80 backdrop-blur-md border-b border-dark-border shadow-sm">
+          <p className="flex h-10 items-center justify-center bg-gradient-to-r from-neon-blue to-neon-purple px-4 text-sm font-semibold tracking-wide text-white sm:px-6 lg:px-8">
+            Get free premium delivery on orders over ₹1000
           </p>
           <nav
             aria-label="Top"
-            className="px-4 sm:px-6 lg:px-8 border-b border-gray-200 dark:bg-gray-900 dark:border-neutral-950"
+            className="px-4 sm:px-6 lg:px-8"
           >
             <div className="max-w-7xl mx-auto">
-              <div className="flex h-16 items-center">
+              <div className="flex h-20 items-center">
                 <div className="flex lg:ml-0">
-                  <Link to="/" className="flex items-center space-x-2" >
-                    <img className="h-8 w-auto" src={logo} alt="" />
-                    <div className="logo-text hidden lg:block">
-                      Food <span className="logo-text-second">Box</span>
+                  <Link to="/" className="flex items-center space-x-3 group" >
+                    <img className="h-10 w-auto transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(4,217,255,0.5)]" src={logo} alt="AuraEats Logo" />
+                    <div className="text-2xl font-black tracking-tight text-white hidden lg:block uppercase">
+                      Aura<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-green to-neon-blue">Eats</span>
                     </div>
                   </Link>
                 </div>
 
-                <div id="toggleNavbar" className="hidden ml-8 lg:block ">
+                <div id="toggleNavbar" className="hidden ml-8 lg:block relative z-50 transition-all">
                   
-                  <div className="flex space-x-8 absolute lg:relative bg-white h-[33vh] lg:h-[0vh] w-full left-[0%] top-[101%] flex-col lg:flex-row justify-between justify-center items-center p-[15px] lg:p-[0px]">
+                  <div className="flex space-x-8 absolute lg:relative bg-dark-card lg:bg-transparent h-[33vh] lg:h-[0vh] w-full left-[0%] top-[101%] flex-col lg:flex-row justify-between justify-center items-center p-[15px] lg:p-[0px] shadow-xl lg:shadow-none border-b border-dark-border lg:border-none">
                     <NavLink
                       to="/"
-                      className="flex items-center text-xl lg:text-sm font-medium text-gray-700 dark:text-white hover:text-lime-600 border-white border-b-2 "
+                      className={({ isActive }) => `flex items-center text-xl lg:text-base font-semibold transition-colors duration-300 ${isActive ? "text-neon-green" : "text-gray-300 hover:text-neon-blue"} border-transparent border-b-2 hover:border-neon-blue`}
                     >
                       Home
                     </NavLink>
                     <NavLink
                       to="/restaurants"
-                      className="flex items-center text-xl lg:text-sm font-medium text-gray-700  dark:text-white hover:text-lime-600 border-white border-b-2 "
+                      className={({ isActive }) => `flex items-center text-xl lg:text-base font-semibold transition-colors duration-300 ${isActive ? "text-neon-green" : "text-gray-300 hover:text-neon-blue"} border-transparent border-b-2 hover:border-neon-blue`}
                     >
                       Restaurants
                     </NavLink>
                     <NavLink
                       to="/about"
-                      className="flex items-center text-xl lg:text-sm font-medium text-gray-700  dark:text-white hover:text-lime-600 border-white border-b-2 "
+                      className={({ isActive }) => `flex items-center text-xl lg:text-base font-semibold transition-colors duration-300 ${isActive ? "text-neon-green" : "text-gray-300 hover:text-neon-blue"} border-transparent border-b-2 hover:border-neon-blue`}
                     >
-                      About Us
+                      About
                     </NavLink>
                     <NavLink
                       to="/contact"
-                      className="flex items-center text-xl lg:text-sm font-medium text-gray-700  dark:text-white hover:text-lime-600 border-white border-b-2 "
+                      className={({ isActive }) => `flex items-center text-xl lg:text-base font-semibold transition-colors duration-300 ${isActive ? "text-neon-green" : "text-gray-300 hover:text-neon-blue"} border-transparent border-b-2 hover:border-neon-blue`}
                     >
-                      Contact Us
+                      Contact
                     </NavLink>
                   </div>
                 </div>
@@ -67,78 +69,44 @@ const Header = () => {
                   <div className="pr-2 lg:pr-0 lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                     <NavLink
                       to="/sign-in"
-                      className="lg:pr-0 text-sm font-medium text-gray-700  dark:text-white hover:text-lime-600 "
+                      className="lg:pr-0 text-sm font-semibold text-gray-300 hover:text-neon-blue transition-colors duration-300"
                     >
-                      Sign in
+                      Sign In
                     </NavLink>
                     <span
-                      className="h-6 w-px bg-gray-200"
+                      className="h-6 w-px bg-dark-border"
                       aria-hidden="true"
                     ></span>
                     <NavLink
                       to="/sign-up"
-                      className="hidden lg:block text-sm font-medium text-gray-700  dark:text-white hover:text-lime-600"
+                      className="hidden lg:block text-sm font-semibold bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-white transition-all duration-300 backdrop-blur-sm border border-white/10"
                     >
-                      Create account
+                      Join AuraEats
                     </NavLink>
                   </div>
                   <div className="pr-6 lg:pr-0 ml-4 flow-root lg:ml-6 lg:block">
-                    <NavLink to="/cart" className="group -m-2 flex items-center p-2">
-                      <ShoppingCartCheckoutIcon className="text-gray-700 dark:text-white hover:text-lime-600 group" />
-                      <span className="ml-1 text-sm font-medium text-gray-700 dark:text-white group-hover:text-lime-600">
-                        {cartItems.length}
-                      </span>
+                    <NavLink to="/cart" className="group -m-2 flex items-center p-2 relative">
+                      <div className="p-2 rounded-full bg-dark-card border border-dark-border group-hover:border-neon-green transition-colors duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_15px_rgba(57,255,20,0.3)]">
+                        <ShoppingCartCheckoutIcon className="text-gray-300 group-hover:text-neon-green transition-colors duration-300" />
+                      </div>
+                      {cartItems.length > 0 && (
+                        <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-neon-green to-green-600 text-[10px] font-bold text-dark-bg shadow-md">
+                          {cartItems.length}
+                        </span>
+                      )}
                     </NavLink>
                   </div>
-                    <div onClick={navbarToggle} data-collapse-toggle="navbar-default" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-                        <span className="sr-only">Open main menu</span>
-                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-                        </svg>
-                    </div>
+                  <div onClick={navbarToggle} className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg lg:hidden hover:bg-dark-card focus:outline-none focus:ring-2 focus:ring-neon-blue transition-colors cursor-pointer">
+                    <span className="sr-only">Open main menu</span>
+                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
           </nav>
         </header>
-
-
-
-{/* 
-<nav className="bg-white border-gray-200 dark:bg-gray-900">
-  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" className="flex items-center">
-        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span className="sr-only">Open main menu</span>
-        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> */}
-
       </div>
     </>
   );
